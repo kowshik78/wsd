@@ -17,7 +17,7 @@ test('Valid Form Submission', async ({ page }) => {
   await formSubmission.verifyValidFormSuccessMessage();
 });
 
-test('Add to Cart and Update Quantity', async ({ page }) => {
+test('Addx to Cart and Update Quantity', async ({ page }) => {
   const productToCart = new ProducttoCart(page);
   await productToCart.navigateTo('https://practicesoftwaretesting.com/');
   await productToCart.addToCart();
