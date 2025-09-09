@@ -17,15 +17,14 @@ test('Valid Form Submission', async ({ page }) => {
   await formSubmission.verifyValidFormSuccessMessage();
 });
 
-test('Addx to Cart and Update Quantity', async ({ page }) => {
+test('Add to Cart and Update Quantity', async ({ page }) => {
   const productToCart = new ProducttoCart(page);
   await productToCart.navigateTo('https://practicesoftwaretesting.com/');
-  await productToCart.addToCart();
-  
-  const cartProductName = await productToCart.getCartProductName();
-  expect(cartProductName).toMatch(/Combination Pliers/i);
+  const productName = await productToCart.addToCart("Combination Pliers");
+  const cartProductName = await productToCart.getCartProductTitle();
+  expect(cartProductName).toBe(productName);
 
-  await productToCart.cartQuantityUpdate();
-
+  const { expectedTotal, totalPriceNumber } = await productToCart.cartQuantityUpdate(3);
+  expect(totalPriceNumber).toBeCloseTo(expectedTotal, 2);
 
 });

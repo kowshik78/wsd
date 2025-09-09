@@ -15,7 +15,7 @@ export class WrapperClass {
     async getText(element: Locator) {
         await expect(element).toBeVisible({ timeout: 20000 });
         const text = await element.textContent();
-        return text;
+        return text?.trim();
     }
 
     async verifyText(element: Locator, expected: string) {
